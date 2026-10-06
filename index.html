@@ -1,0 +1,1111 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pet Shop Fagundes | Pedido</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f5f5f5;
+    font-family: Arial, sans-serif;
+    color: #222;
+    padding-bottom: 100px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* PRODUTOS */
+
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.produto {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.foto {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #e9e9e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sem-foto {
+    color: #999;
+    font-size: 40px;
+}
+
+.info {
+    padding: 12px;
+}
+
+.nome {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.descricao {
+    color: #777;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.preco {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.quantidade {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quantidade button {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: #0b4f5c;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.quantidade button:hover {
+    background: #083d47;
+}
+
+.quantidade span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* FORMULÁRIO */
+
+.formulario {
+    background: white;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.formulario h2 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.opcoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.opcao {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px;
+    background: #f3f3f3;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.opcao input {
+    width: auto;
+}
+
+.esconder {
+    display: none;
+}
+
+/* PIX */
+
+.pix-info {
+    margin-top: 15px;
+    padding: 15px;
+    background: #eef9f1;
+    border: 1px solid #b8dfc2;
+    border-radius: 10px;
+}
+
+.pix-info strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.pix-chave {
+    word-break: break-all;
+    font-weight: bold;
+    color: #08752b;
+}
+
+/* BARRA FINAL */
+
+.resumo {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 12px;
+    z-index: 100;
+}
+
+.resumo-interno {
+    max-width: 700px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.total {
+    flex: 1;
+}
+
+.total small {
+    display: block;
+    color: #777;
+}
+
+.total strong {
+    font-size: 20px;
+}
+
+.whatsapp {
+    background: #25D366;
+    color: #063b1c;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.whatsapp:hover {
+    background: #20bd5a;
+}
+
+.whatsapp:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.erro {
+    color: #c62828;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+/* CELULAR */
+
+@media (max-width: 500px) {
+
+    .produtos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .info {
+        padding: 9px;
+    }
+
+    .nome {
+        font-size: 14px;
+    }
+
+    .descricao {
+        font-size: 12px;
+    }
+
+    .preco {
+        font-size: 16px;
+    }
+
+    .quantidade button {
+        width: 34px;
+        height: 34px;
+    }
+
+    .whatsapp {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 id="nomeLoja">Pet Shop</h1>
+
+    <p class="subtitulo">
+        Escolha os produtos e faça seu pedido pelo WhatsApp 🐾
+    </p>
+
+    <div class="produtos" id="produtos"></div>
+
+    <div class="formulario">
+
+        <h2>Seus dados</h2>
+
+        <label for="nome">Nome</label>
+        <input
+            type="text"
+            id="nome"
+            placeholder="Digite seu nome"
+        >
+
+        <label for="telefone">WhatsApp</label>
+        <input
+            type="tel"
+            id="telefone"
+            placeholder="(11) 99999-9999"
+        >
+
+        <label>Como deseja receber?</label>
+
+        <div class="opcoes">
+
+            <label class="opcao">
+                <input
+                    type="radio"
+                    name="recebimento"
+                    value="Entrega"
+                    checked
+                >
+                🚚 Entrega
+            </label>
+
+            <label class="opcao">
+                <input
+                    type="radio"
+                    name="recebimento"
+                    value="Retirada"
+                >
+                🏪 Retirar na loja
+            </label>
+
+        </div>
+
+        <div id="enderecoArea">
+
+            <label for="endereco">Endereço</label>
+
+            <input
+                type="text"
+                id="endereco"
+                placeholder="Rua, número e bairro"
+            >
+
+        </div>
+
+        <label>Forma de pagamento</label>
+
+        <div class="opcoes">
+
+            <label class="opcao">
+                <input
+                    type="radio"
+                    name="pagamento"
+                    value="Pix"
+                    checked
+                >
+                💚 Pix
+            </label>
+
+            <label class="opcao">
+                <input
+                    type="radio"
+                    name="pagamento"
+                    value="Cartão"
+                >
+                💳 Cartão
+            </label>
+
+            <label class="opcao">
+                <input
+                    type="radio"
+                    name="pagamento"
+                    value="Dinheiro"
+                >
+                💵 Dinheiro
+            </label>
+
+        </div>
+
+        <div id="pixArea" class="pix-info">
+
+            <strong>💚 Pagamento via Pix</strong>
+
+            <span>Chave Pix:</span>
+
+            <div class="pix-chave" id="pixChave">
+                11988492769
+            </div>
+
+            <small>
+                Após fazer o Pix, envie o comprovante pelo WhatsApp.
+            </small>
+
+        </div>
+
+        <div id="trocoArea" class="esconder">
+
+            <label for="troco">
+                Troco para quanto?
+            </label>
+
+            <input
+                type="number"
+                id="troco"
+                placeholder="Ex.: 100"
+                min="0"
+                step="0.01"
+            >
+
+        </div>
+
+        <div class="erro" id="erro"></div>
+
+    </div>
+
+</div>
+
+<div class="resumo">
+
+    <div class="resumo-interno">
+
+        <div class="total">
+
+            <small id="quantidadeTotal">
+                0 itens
+            </small>
+
+            <strong id="valorTotal">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+        <button
+            class="whatsapp"
+            id="botaoWhatsApp"
+            disabled
+        >
+            Enviar no WhatsApp
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+/* ==================================================
+   CONFIGURAÇÕES DA LOJA
+   ================================================== */
+
+const CONFIG = {
+
+    loja: "Pet Shop Fagundes",
+
+    whatsapp: "5511988492769",
+
+    pix: {
+        chave: "11988492769",
+        nome: "Pet Shop Amigo Fiel"
+    },
+
+    taxaEntrega: 8.00,
+
+    produtos: [
+
+        {
+            nome: "Ração cães adultos",
+            descricao: "10,1 kg",
+            preco: 139.90,
+            foto: "1689187764879.jpg"
+        },
+
+        {
+            nome: "Ração filhotes",
+            descricao: "3 kg",
+            preco: 69.90,
+            foto: "imagesRaçãofilhotes.jpeg"
+        },
+
+        {
+            nome: "Ração gatos castrados",
+            descricao: "3 kg",
+            preco: 89.90,
+            foto: "imagesaçãoGatoscastrados.jpeg"
+        },
+
+        {
+            nome: "Bifinho para cães",
+            descricao: "500 g",
+            preco: 24.90,
+            foto: "imagesBifinhoparacães.jpeg"
+        },
+
+        {
+            nome: "Sachê para gatos",
+            descricao: "70 g",
+            preco: 3.90,
+            foto: "Sachêparagatos.jpg"
+        },
+
+        {
+            nome: "Shampoo neutro",
+            descricao: "500 ml",
+            preco: 29.90,
+            foto: "Shampooneutro.jpeg"
+        },
+
+        {
+            nome: "Tapete higiênico",
+            descricao: "Pacote com 30",
+            preco: 54.90,
+            foto: "Tapetehigiênico.jpg"
+        },
+
+        {
+            nome: "Areia sanitária",
+            descricao: "4 kg",
+            preco: 19.90,
+            foto: "images.imgareia.jpgjpeg"
+        },
+
+        {
+            nome: "Coleira ajustável",
+            descricao: "P, M ou G",
+            preco: 34.90,
+            foto: "Coleiraajustável.jpeg"
+        }
+
+    ]
+
+};
+
+
+/* ==================================================
+   INICIALIZAÇÃO
+   ================================================== */
+
+const quantidade = CONFIG.produtos.map(() => 0);
+
+const produtos = document.getElementById("produtos");
+
+const dinheiro = valor => {
+
+    return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+
+};
+
+
+/* NOME DA LOJA */
+
+document.getElementById("nomeLoja").textContent =
+    CONFIG.loja;
+
+document.title =
+    CONFIG.loja + " | Pedido";
+
+
+/* CHAVE PIX */
+
+document.getElementById("pixChave").textContent =
+    CONFIG.pix.chave;
+
+
+/* ==================================================
+   MOSTRAR PRODUTOS
+   ================================================== */
+
+produtos.innerHTML = CONFIG.produtos.map(
+    (produto, index) => {
+
+    return `
+
+        <div class="produto">
+
+            <div class="foto">
+
+                ${
+                    produto.foto
+
+                    ?
+
+                    `<img
+                        src="${produto.foto}"
+                        alt="${produto.nome}"
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span
+                        class="sem-foto"
+                        style="display:none;"
+                    >
+                        📷
+                    </span>`
+
+                    :
+
+                    `<span class="sem-foto">
+                        📷
+                    </span>`
+                }
+
+            </div>
+
+            <div class="info">
+
+                <div class="nome">
+                    ${produto.nome}
+                </div>
+
+                <div class="descricao">
+                    ${produto.descricao}
+                </div>
+
+                <div class="preco">
+                    ${dinheiro(produto.preco)}
+                </div>
+
+                <div class="quantidade">
+
+                    <button
+                        type="button"
+                        onclick="alterarQuantidade(${index}, -1)"
+                    >
+                        −
+                    </button>
+
+                    <span id="quantidade-${index}">
+                        0
+                    </span>
+
+                    <button
+                        type="button"
+                        onclick="alterarQuantidade(${index}, 1)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}).join("");
+
+
+/* ==================================================
+   ALTERAR QUANTIDADE
+   ================================================== */
+
+function alterarQuantidade(index, valor) {
+
+    quantidade[index] += valor;
+
+    if (quantidade[index] < 0) {
+        quantidade[index] = 0;
+    }
+
+    document.getElementById(
+        "quantidade-" + index
+    ).textContent = quantidade[index];
+
+    atualizarResumo();
+}
+
+
+/* ==================================================
+   CALCULAR PEDIDO
+   ================================================== */
+
+function calcularPedido() {
+
+    let itens = [];
+
+    let subtotal = 0;
+
+    let quantidadeItens = 0;
+
+    CONFIG.produtos.forEach(
+        (produto, index) => {
+
+        if (quantidade[index] > 0) {
+
+            const totalProduto =
+                produto.preco *
+                quantidade[index];
+
+            itens.push({
+
+                nome: produto.nome,
+
+                quantidade:
+                    quantidade[index],
+
+                preco:
+                    produto.preco,
+
+                total:
+                    totalProduto
+
+            });
+
+            subtotal += totalProduto;
+
+            quantidadeItens +=
+                quantidade[index];
+
+        }
+
+    });
+
+
+    const recebimento =
+        document.querySelector(
+            'input[name="recebimento"]:checked'
+        ).value;
+
+
+    const taxa =
+        recebimento === "Entrega" &&
+        itens.length > 0
+            ? CONFIG.taxaEntrega
+            : 0;
+
+
+    const total =
+        subtotal + taxa;
+
+
+    return {
+
+        itens,
+        subtotal,
+        taxa,
+        total,
+        quantidadeItens,
+        recebimento
+
+    };
+}
+
+
+/* ==================================================
+   ATUALIZAR RESUMO
+   ================================================== */
+
+function atualizarResumo() {
+
+    const pedido =
+        calcularPedido();
+
+
+    document.getElementById(
+        "quantidadeTotal"
+    ).textContent =
+
+        pedido.quantidadeItens +
+
+        (
+            pedido.quantidadeItens === 1
+            ? " item"
+            : " itens"
+        );
+
+
+    document.getElementById(
+        "valorTotal"
+    ).textContent =
+        dinheiro(pedido.total);
+
+
+    document.getElementById(
+        "botaoWhatsApp"
+    ).disabled =
+        pedido.itens.length === 0;
+}
+
+
+/* ==================================================
+   ENTREGA / RETIRADA
+   ================================================== */
+
+document
+.querySelectorAll(
+    'input[name="recebimento"]'
+)
+.forEach(input => {
+
+    input.addEventListener(
+        "change",
+        () => {
+
+        const entrega =
+            document.querySelector(
+                'input[name="recebimento"]:checked'
+            ).value === "Entrega";
+
+
+        document
+        .getElementById("enderecoArea")
+        .classList.toggle(
+            "esconder",
+            !entrega
+        );
+
+
+        atualizarResumo();
+
+    });
+
+});
+
+
+/* ==================================================
+   PAGAMENTO
+   ================================================== */
+
+document
+.querySelectorAll(
+    'input[name="pagamento"]'
+)
+.forEach(input => {
+
+    input.addEventListener(
+        "change",
+        () => {
+
+        const pagamento =
+            document.querySelector(
+                'input[name="pagamento"]:checked'
+            ).value;
+
+
+        document
+        .getElementById("trocoArea")
+        .classList.toggle(
+            "esconder",
+            pagamento !== "Dinheiro"
+        );
+
+
+        document
+        .getElementById("pixArea")
+        .classList.toggle(
+            "esconder",
+            pagamento !== "Pix"
+        );
+
+    });
+
+});
+
+
+/* ==================================================
+   ENVIAR PARA WHATSAPP
+   ================================================== */
+
+document
+.getElementById("botaoWhatsApp")
+.addEventListener(
+    "click",
+    () => {
+
+    const nome =
+        document.getElementById("nome")
+        .value
+        .trim();
+
+
+    const telefone =
+        document.getElementById("telefone")
+        .value
+        .trim();
+
+
+    const endereco =
+        document.getElementById("endereco")
+        .value
+        .trim();
+
+
+    const troco =
+        document.getElementById("troco")
+        .value
+        .trim();
+
+
+    const pedido =
+        calcularPedido();
+
+
+    const pagamento =
+        document.querySelector(
+            'input[name="pagamento"]:checked'
+        ).value;
+
+
+    let erros = [];
+
+
+    if (!nome) {
+        erros.push("seu nome");
+    }
+
+
+    if (!telefone) {
+        erros.push("seu WhatsApp");
+    }
+
+
+    if (
+        pedido.recebimento === "Entrega" &&
+        !endereco
+    ) {
+        erros.push("seu endereço");
+    }
+
+
+    if (
+        pagamento === "Dinheiro" &&
+        troco &&
+        Number(troco) < pedido.total
+    ) {
+
+        document.getElementById(
+            "erro"
+        ).textContent =
+            "O valor do troco precisa ser maior ou igual ao total do pedido.";
+
+        return;
+    }
+
+
+    if (erros.length > 0) {
+
+        document.getElementById(
+            "erro"
+        ).textContent =
+            "Preencha: " +
+            erros.join(", ") +
+            ".";
+
+        return;
+    }
+
+
+    document.getElementById(
+        "erro"
+    ).textContent = "";
+
+
+    /* MENSAGEM */
+
+    let mensagem = "";
+
+    mensagem +=
+        `🐾 *NOVO PEDIDO - ${CONFIG.loja}*\n\n`;
+
+    mensagem +=
+        `👤 *Nome:* ${nome}\n`;
+
+    mensagem +=
+        `📱 *WhatsApp:* ${telefone}\n\n`;
+
+    mensagem +=
+        `🛒 *PRODUTOS*\n\n`;
+
+
+    pedido.itens.forEach(item => {
+
+        mensagem +=
+            `• ${item.quantidade}x ${item.nome}\n`;
+
+        mensagem +=
+            `  ${dinheiro(item.preco)} cada — ${dinheiro(item.total)}\n\n`;
+
+    });
+
+
+    mensagem +=
+        `━━━━━━━━━━━━━━\n`;
+
+    mensagem +=
+        `Subtotal: ${dinheiro(pedido.subtotal)}\n`;
+
+
+    if (pedido.taxa > 0) {
+
+        mensagem +=
+            `🚚 Entrega: ${dinheiro(pedido.taxa)}\n`;
+
+    }
+
+
+    mensagem +=
+        `*TOTAL: ${dinheiro(pedido.total)}*\n\n`;
+
+
+    /* PAGAMENTO */
+
+    mensagem +=
+        `💳 *Pagamento:* ${pagamento}\n`;
+
+
+    if (pagamento === "Pix") {
+
+        mensagem +=
+            `🔑 *Chave Pix:* ${CONFIG.pix.chave}\n`;
+
+        mensagem +=
+            `🏪 *Recebedor:* ${CONFIG.pix.nome}\n`;
+
+        mensagem +=
+            `📸 Após o pagamento, envie o comprovante por aqui.\n`;
+
+    }
+
+
+    if (
+        pagamento === "Dinheiro" &&
+        troco
+    ) {
+
+        mensagem +=
+            `💵 *Troco para:* R$ ${troco}\n`;
+
+    }
+
+
+    mensagem += "\n";
+
+
+    /* ENTREGA */
+
+    if (
+        pedido.recebimento === "Entrega"
+    ) {
+
+        mensagem +=
+            `🚚 *Entrega*\n`;
+
+        mensagem +=
+            `📍 *Endereço:* ${endereco}\n`;
+
+    } else {
+
+        mensagem +=
+            `🏪 *Retirada na loja*\n`;
+
+    }
+
+
+    mensagem +=
+        `\nObrigado pelo pedido! 🐾`;
+
+
+    /* ABRIR WHATSAPP */
+
+    const url =
+        "https://wa.me/" +
+        CONFIG.whatsapp +
+        "?text=" +
+        encodeURIComponent(mensagem);
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+});
+
+
+/* ==================================================
+   INICIAR
+   ================================================== */
+
+atualizarResumo();
+
+</script>
+
+</body>
+</html>
+```
